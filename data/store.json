@@ -1,0 +1,392 @@
+{
+  "users": [
+    {
+      "id": "U-01",
+      "role": "Admin",
+      "name": "System Admin",
+      "username": "admin",
+      "passwordHash": "3690c6e9b9794a98e7b74a51b4849b8f:14b3594dd0774916dfc4215c0326f95fd5993a92b4b5bc3b6c2693fb9c8338a7af121e1a2553e2a0461092f5ba4fbd12200d226ed5eb379078fd66cb1dd3a74b"
+    },
+    {
+      "id": "U-02",
+      "role": "Teacher",
+      "name": "Ms. Lin",
+      "username": "mlin",
+      "linkedTeacherId": "T-01",
+      "passwordHash": "2fa199396bb33d85656f70e80ae0c68e:a826d52041ef69e578f1554df35d6591dca99ac996b04cb3a639f32ea11853c00db6ad292d4b90936fad3f9f1b5e758cb1d50cfd1ab541e0b5fe8c8d63358041"
+    },
+    {
+      "id": "U-03",
+      "role": "Student",
+      "name": "Alicia Tan",
+      "username": "g7-001",
+      "linkedStudentId": "S-01",
+      "passwordHash": "bcd82a6e067f16702ef84c4191a11f84:3fc686f8a7d6e2fbedc0d30d687f882ec763ee86b67c61a43616e3a5baecc594939cfbf93beb177e64990b9515bbd11d5d0d98682a4d5eb0e52a0592b578c3be"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "T-04",
+      "name": "Persistence Check",
+      "phone": "555-1999",
+      "role": "Teacher",
+      "assignedClassIds": []
+    },
+    {
+      "id": "T-01",
+      "name": "Ms. Lin",
+      "phone": "555-1201",
+      "role": "Homeroom Teacher",
+      "assignedClassIds": [
+        "C-01"
+      ]
+    },
+    {
+      "id": "T-02",
+      "name": "Mr. Wong",
+      "phone": "555-1202",
+      "role": "Teacher",
+      "assignedClassIds": [
+        "C-01",
+        "C-02"
+      ]
+    },
+    {
+      "id": "T-03",
+      "name": "Ms. Nur",
+      "phone": "555-1203",
+      "role": "Teacher",
+      "assignedClassIds": [
+        "C-03"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "id": "C-01",
+      "name": "Grade 7 Jade",
+      "grade": "Grade 7",
+      "homeroomTeacherId": "T-01",
+      "studentCount": 45
+    },
+    {
+      "id": "C-02",
+      "name": "Grade 8 Harbor",
+      "grade": "Grade 8",
+      "homeroomTeacherId": "T-02",
+      "studentCount": 39
+    },
+    {
+      "id": "C-03",
+      "name": "Grade 9 Cedar",
+      "grade": "Grade 9",
+      "homeroomTeacherId": "T-03",
+      "studentCount": 36
+    }
+  ],
+  "students": [
+    {
+      "id": "S-04",
+      "name": "Emma Khoo",
+      "classId": "C-01",
+      "studentNo": "G7-120",
+      "accuracy": 0.7,
+      "weakTags": [
+        "Pending diagnosis"
+      ]
+    },
+    {
+      "id": "S-05",
+      "name": "Faris Lim",
+      "classId": "C-01",
+      "studentNo": "G7-121",
+      "accuracy": 0.7,
+      "weakTags": [
+        "Pending diagnosis"
+      ]
+    },
+    {
+      "id": "S-06",
+      "name": "Mina Ong",
+      "classId": "C-01",
+      "studentNo": "G7-122",
+      "accuracy": 0.7,
+      "weakTags": [
+        "Pending diagnosis"
+      ]
+    },
+    {
+      "id": "S-01",
+      "name": "Alicia Tan",
+      "classId": "C-01",
+      "studentNo": "G7-001",
+      "accuracy": 0.84,
+      "weakTags": [
+        "Fractions",
+        "Word Problems"
+      ]
+    },
+    {
+      "id": "S-02",
+      "name": "Jun Wei",
+      "classId": "C-01",
+      "studentNo": "G7-002",
+      "accuracy": 0.72,
+      "weakTags": [
+        "Composition",
+        "Grammar"
+      ]
+    },
+    {
+      "id": "S-03",
+      "name": "Nur Aisyah",
+      "classId": "C-03",
+      "studentNo": "G9-015",
+      "accuracy": 0.9,
+      "weakTags": [
+        "Geometry"
+      ]
+    }
+  ],
+  "compositionSubmissions": [
+    {
+      "id": "COMP-02",
+      "studentId": "S-01",
+      "studentName": "Alicia Tan",
+      "classId": "C-01",
+      "className": "Grade 7 Jade",
+      "testCode": "ENG-COMP-01",
+      "promptTitle": "The Day I Almost Gave Up",
+      "promptText": "Write a short reflection on a difficult school moment and explain how you moved forward.",
+      "shortAnswer": "Math test",
+      "essayText": "My Difficult School Moment\n\nOne of my hardest moments in school happened during a math test last year. I had studied the night before, but when I looked at the first question, my mind just went blank. Everyone else was writing quickly, but I couldn’t even start. I felt my face get hot, and my eyes started to sting. I put my head down so no one would see me cry. When the teacher said, “Five more minutes,” I had only answered two questions. I felt like a complete failure.\n\nHow I Moved Forward\n\nThe next day, I almost pretended I was sick so I could stay home. But my mom noticed something was wrong and asked me about it. After I told her, she said something I’ll never forget: “One bad test doesn’t mean you’re bad at math. It just means you need a different way to learn.”\n\nSo I talked to my teacher before class. I was so nervous, but she was really kind. She gave me extra practice sheets and showed me a trick using drawing to solve problems. She also told me I could have a few more minutes on my next test if I needed it. I started studying with a friend who explained things in a way that made more sense to me.\n\nThe next test wasn’t perfect, but I finished on time and got a B. More importantly, I learned that asking for help doesn’t mean you’re weak—it means you’re brave enough to keep going. Now, whenever I get stuck, I don’t freeze. I take a breath, raise my hand, or talk to my teacher after class. That frozen moment last year became the moment I learned how to move forward.",
+      "status": "Received",
+      "submittedAt": "2026-04-30T19:38:50.842Z",
+      "updatedAt": "2026-04-30T19:38:50.842Z",
+      "teacherSummary": "",
+      "aiSuggestion": "Submission received. AI review suggestions will appear here after processing.",
+      "overallBand": "Pending",
+      "evaluation": {
+        "dimensions": [
+          {
+            "id": "D1",
+            "score": 4,
+            "comment": "Clear three-part structure with problem, turning point (mother's advice), and resolution that builds logically to insight."
+          },
+          {
+            "id": "D2",
+            "score": 4,
+            "comment": "Strong reflection moves beyond surface emotions to meaningful insight about vulnerability and help-seeking as strength."
+          },
+          {
+            "id": "D3",
+            "score": 3.5,
+            "comment": "Two sections are well-organized and contrast effectively, though paragraph transitions within sections could be smoother and more varied in length."
+          },
+          {
+            "id": "D4",
+            "score": 4,
+            "comment": "Authentic voice emerges through physical details (face getting hot, eyes stinging) and honest emotional honesty without melodrama."
+          },
+          {
+            "id": "D5",
+            "score": 4.5,
+            "comment": "Excellently aligned with prompt: directly addresses difficult moment, explains concrete steps forward, and demonstrates genuine reflection on moving ahead."
+          },
+          {
+            "id": "D6",
+            "score": 4,
+            "comment": "Personal reflection essay form is well-controlled with appropriate narrative-reflective balance and consistent first-person perspective."
+          },
+          {
+            "id": "D7",
+            "score": 4.5,
+            "comment": "Values are clear and earned: vulnerability and help-seeking are reframed positively through action and genuine growth rather than platitude."
+          },
+          {
+            "id": "D8",
+            "score": 3.5,
+            "comment": "Supporting details are specific (B grade, drawing technique, friend's explanation) but could offer slightly more concrete evidence of transformation."
+          },
+          {
+            "id": "D9",
+            "score": 4,
+            "comment": "Universal school anxiety theme resonates culturally; academic struggle is relatable and the support system (parent, teacher, peer) reflects realistic school context."
+          },
+          {
+            "id": "D10",
+            "score": 3.5,
+            "comment": "Writing shows solid control of narrative and reflective modes with some sophisticated sentence variety, though some constructions remain fairly straightforward."
+          },
+          {
+            "id": "D11",
+            "score": 4,
+            "comment": "Strong, genuine reflection with clear growth mindset; solid foundation with room for deeper sentence complexity and more nuanced emotional layering."
+          }
+        ],
+        "overallScore": 38.5,
+        "overallBand": "Secure",
+        "overallComment": "This is a well-crafted personal reflection that directly meets the prompt requirements with authentic emotional honesty and genuine insight. The student demonstrates strong narrative control, clear values, and effective use of concrete detail to show (not tell) their growth. Minor areas for development include deeper sentence variety and slightly more sophisticated analysis of the learning moment.",
+        "strengths": [
+          "Authentic emotional honesty with specific sensory details that make the struggle real",
+          "Strong turning-point structure anchored by mother's pivotal comment",
+          "Clear, earned insight that reframes help-seeking as strength rather than weakness",
+          "Concrete problem-solving steps (teacher conference, study strategies, accommodations) that demonstrate actual growth"
+        ],
+        "improvements": [
+          "Expand sentence variety and complexity, particularly in the first section, to show more sophisticated construction",
+          "Deepen the reflection on why the mother's comment was transformative—what shifted in thinking specifically?",
+          "Consider adding one more specific moment or interaction that shows sustained change beyond the single improved test grade",
+          "Strengthen transitions between paragraphs and ideas for smoother narrative flow"
+        ],
+        "evaluatedAt": "2026-04-30T21:51:45.454Z"
+      }
+    },
+    {
+      "id": "COMP-01",
+      "studentId": "S-01",
+      "studentName": "Alicia Tan",
+      "classId": "C-01",
+      "className": "Grade 7 Jade",
+      "testCode": "ENG-COMP-01",
+      "promptTitle": "The Day I Almost Gave Up",
+      "promptText": "Write a short reflection on a difficult school moment and explain how you moved forward.",
+      "shortAnswer": "I first felt embarrassed after doing badly on a timed practice.",
+      "essayText": "At first I wanted to avoid the next test, but my teacher asked me to write down one small step I could still take. I reviewed my mistakes, asked for help, and slowly became less afraid of trying again. The turning point was not a miracle score. It was realizing that steady effort changed my confidence before it changed my marks.",
+      "status": "Teacher Reviewing",
+      "submittedAt": "2026-04-28T13:10:00.000Z",
+      "updatedAt": "2026-04-28T16:45:00.000Z",
+      "teacherSummary": "Good emotional arc and clear reflection. Add one sharper scene at the beginning for stronger engagement.",
+      "aiSuggestion": "Strengthen the opening image and add one sentence about how the review plan worked day by day.",
+      "overallBand": "Developing"
+    }
+  ],
+  "scanTasks": [
+    {
+      "id": "ST-05",
+      "type": "Teacher Paper",
+      "printer": "Printer-11",
+      "className": "Grade 7 Jade",
+      "subject": "Mathematics",
+      "paperName": "Upload Verification Pack",
+      "status": "Pending Segmentation",
+      "fileName": "upload-test.pdf",
+      "fileUrl": "/api/uploads/1776997107987-upload-test.pdf",
+      "uploadedAt": "2026-04-24T02:18:27.989Z"
+    },
+    {
+      "id": "ST-04",
+      "type": "Teacher Paper",
+      "printer": "Printer-09",
+      "className": "Grade 8 Harbor",
+      "subject": "English",
+      "paperName": "Routing Verification Pack",
+      "status": "Pending Segmentation"
+    },
+    {
+      "id": "ST-210",
+      "type": "Teacher Paper",
+      "printer": "Printer-07",
+      "className": "Grade 7 Jade",
+      "subject": "Mathematics",
+      "paperName": "Midterm A",
+      "status": "Answer Completed"
+    },
+    {
+      "id": "ST-214",
+      "type": "Student Paper",
+      "printer": "Printer-07",
+      "className": "Grade 7 Jade",
+      "subject": "Mathematics",
+      "paperName": "Midterm A",
+      "status": "In Grading",
+      "linkedAnswerPaper": "Midterm A"
+    },
+    {
+      "id": "ST-219",
+      "type": "Teacher Paper",
+      "printer": "Printer-03",
+      "className": "Grade 9 Cedar",
+      "subject": "Composition",
+      "paperName": "Malay Essay 3",
+      "status": "Pending Segmentation"
+    }
+  ],
+  "answerBanks": [
+    {
+      "id": "AB-04",
+      "paperName": "Grade 8 Fractions Drill",
+      "subject": "Mathematics",
+      "grade": "Grade 8",
+      "topic": "Fractions",
+      "difficulty": "Advanced",
+      "questionStem": "Compare the fractions and explain why the larger denominator does not always mean the smaller value.",
+      "score": 4,
+      "rubric": "Award one mark for ordering, one for equivalent fraction reasoning, one for written explanation, and one for the conclusion.",
+      "status": "Teacher Review",
+      "createdByUserId": "U-02",
+      "createdByName": "Ms. Lin"
+    },
+    {
+      "id": "AB-03",
+      "paperName": "Teacher Built Grammar Set",
+      "subject": "English",
+      "questionStem": "Identify the tense error and rewrite the sentence correctly.",
+      "score": 3,
+      "rubric": "Award one mark for identifying the error, one for correct tense, and one for complete sentence structure.",
+      "status": "Teacher Review",
+      "createdByUserId": "U-02",
+      "createdByName": "Ms. Lin"
+    },
+    {
+      "id": "AB-01",
+      "paperName": "Midterm A",
+      "subject": "Mathematics",
+      "questionStem": "Q2 Compare the fractions, justify the ordering, and show each step.",
+      "score": 5,
+      "rubric": "Award marks for simplification, comparison logic, written justification, and final conclusion.",
+      "status": "Teacher Review"
+    },
+    {
+      "id": "AB-02",
+      "paperName": "Chinese Composition 5",
+      "subject": "Composition",
+      "questionStem": "Discuss a memorable person and explain why the memory remains vivid.",
+      "score": 30,
+      "rubric": "Content, organization, language control, relevance, and expression.",
+      "status": "Teacher Review"
+    }
+  ],
+  "results": [
+    {
+      "id": "R-01",
+      "studentName": "Alicia Tan",
+      "className": "Grade 7 Jade",
+      "paperName": "Midterm A",
+      "score": 84,
+      "total": 100,
+      "reviewState": "Ready",
+      "errorReason": "Lost points on fraction justification in Q2."
+    },
+    {
+      "id": "R-02",
+      "studentName": "Jun Wei",
+      "className": "Grade 7 Jade",
+      "paperName": "Midterm A",
+      "score": 76,
+      "total": 100,
+      "reviewState": "Adjusted",
+      "errorReason": "Teacher reviewed the essay segmentation and restored partial credit for the second page."
+    },
+    {
+      "id": "R-03",
+      "studentName": "Nur Aisyah",
+      "className": "Grade 9 Cedar",
+      "paperName": "Malay Essay 3",
+      "score": 25,
+      "total": 30,
+      "reviewState": "Adjusted",
+      "errorReason": "Teacher raised content score after reviewing context."
+    }
+  ]
+}
