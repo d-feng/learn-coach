@@ -8,6 +8,9 @@ A role-based school correction and essay evaluation platform for admins, teacher
 
 ## Installation
 
+> **After cloning, always run `npm install` first before starting the servers.  
+> The `node_modules` folder is not included in the repository.**
+
 ```bash
 npm install
 ```
