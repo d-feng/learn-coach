@@ -1,10 +1,7 @@
 import express from 'express';
 import { randomBytes, scryptSync, timingSafeEqual } from 'crypto';
-import { spawn } from 'child_process';
 import fs from 'fs/promises';
-import { createReadStream } from 'fs';
 import multer from 'multer';
-import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -1181,70 +1178,6 @@ app.put('/api/results/:id', requireRole('Admin', 'Teacher'), async (req, res) =>
   res.json(clone(item));
 });
 
-/* ── Audio Tools ── */
-
-const audioUpload = multer({
-  storage: multer.diskStorage({
-    destination: async (req, file, cb) => {
-      const tmp = await fs.mkdtemp(path.join(os.tmpdir(), 'lc-audio-'));
-      cb(null, tmp);
-    },
-    filename: (req, file, cb) => {
-      cb(null, `input-${Date.now()}${path.extname(file.originalname) || '.mp3'}`);
-    }
-  }),
-  limits: { fileSize: 80 * 1024 * 1024 },
-  fileFilter: (req, file, cb) => {
-    if (/\.(mp3|wav|m4a|flac|ogg|aac)$/i.test(file.originalname) || file.mimetype.startsWith('audio/')) {
-      cb(null, true);
-    } else {
-      cb(new Error('Audio files only (mp3, wav, m4a, flac, ogg, aac)'));
-    }
-  }
-});
-
-app.post('/api/audio/extract-instrumental', requireRole('Admin', 'Teacher'), audioUpload.single('audio'), async (req, res) => {
-  if (!req.file) {
-    res.status(400).send('No audio file provided.');
-    return;
-  }
-
-  const inputPath = req.file.path;
-  const outputPath = inputPath.replace(/\.[^.]+$/, '-instrumental.mp3');
-
-  const cleanup = async () => {
-    await fs.unlink(inputPath).catch(() => {});
-    await fs.unlink(outputPath).catch(() => {});
-  };
-
-  try {
-    await new Promise((resolve, reject) => {
-      const ff = spawn('ffmpeg', [
-        '-i', inputPath,
-        '-af', 'pan=stereo|c0=c0-c1|c1=c1-c0',
-        '-ar', '44100',
-        '-b:a', '192k',
-        '-y',
-        outputPath
-      ]);
-      ff.stderr.on('data', () => {});
-      ff.on('close', (code) => (code === 0 ? resolve() : reject(new Error(`FFmpeg exited with code ${code}`))));
-      ff.on('error', (err) => reject(new Error(`FFmpeg not found: ${err.message}`)));
-    });
-
-    const baseName = path.basename(req.file.originalname, path.extname(req.file.originalname));
-    res.setHeader('Content-Type', 'audio/mpeg');
-    res.setHeader('Content-Disposition', `attachment; filename="${baseName}-instrumental.mp3"`);
-
-    const stream = createReadStream(outputPath);
-    stream.pipe(res);
-    stream.on('end', cleanup);
-    stream.on('error', cleanup);
-  } catch (err) {
-    await cleanup();
-    res.status(500).send(err.message);
-  }
-});
 
 await loadStore();
 

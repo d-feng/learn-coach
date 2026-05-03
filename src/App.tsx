@@ -16,7 +16,6 @@ import {
   LoaderCircle,
   LockKeyhole,
   LogOut,
-  Music,
   PenLine,
   Printer,
   ScanLine,
@@ -61,8 +60,7 @@ type ViewKey =
   | 'composition-test'
   | 'wrong-questions'
   | 'practice'
-  | 'score-history'
-  | 'audio-tools';
+  | 'score-history';
 
 interface NavItem {
   key: ViewKey;
@@ -94,8 +92,7 @@ const navByRole: Record<Role, NavItem[]> = {
     { key: 'teacher-registration', label: 'Teacher Registration', icon: UserCog },
     { key: 'class-management', label: 'Class Management', icon: UsersRound },
     { key: 'question-bank', label: 'Question Bank', icon: LibraryBig },
-    { key: 'analytics', label: 'Learning Analytics', icon: BarChart3 },
-    { key: 'audio-tools', label: 'Audio Tools', icon: Music }
+    { key: 'analytics', label: 'Learning Analytics', icon: BarChart3 }
   ],
   Teacher: [
     { key: 'overview', label: 'Overview', icon: GraduationCap },
@@ -103,8 +100,7 @@ const navByRole: Record<Role, NavItem[]> = {
     { key: 'paper-grading', label: 'Paper Grading', icon: FileSearch },
     { key: 'question-bank', label: 'Answer Bank', icon: FolderKanban },
     { key: 'analytics', label: 'Class Analytics', icon: BarChart3 },
-    { key: 'class-management', label: 'Student Import', icon: UsersRound },
-    { key: 'audio-tools', label: 'Audio Tools', icon: Music }
+    { key: 'class-management', label: 'Student Import', icon: UsersRound }
   ],
   Student: [
     { key: 'overview', label: 'Overview', icon: BookOpenCheck },
@@ -1280,8 +1276,7 @@ function viewFromSlug(slug?: string): ViewKey | null {
     'composition-test',
     'wrong-questions',
     'practice',
-    'score-history',
-    'audio-tools'
+    'score-history'
   ];
   return views.includes(slug as ViewKey) ? (slug as ViewKey) : null;
 }
@@ -2624,10 +2619,6 @@ function PageContent(props: {
     );
   }
 
-  if (activeView === 'audio-tools') {
-    return <AudioToolsView />;
-  }
-
   if (activeView === 'analytics') {
     return (
       <section className="split">
@@ -2690,98 +2681,6 @@ function PageContent(props: {
     </section>
   );
 }
-
-function AudioToolsView() {
-  const [file, setFile] = useState<File | null>(null);
-  const [processing, setProcessing] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
-  const [downloadName, setDownloadName] = useState('');
-  const [error, setError] = useState('');
-
-  async function handleProcess() {
-    if (!file || processing) return;
-    setProcessing(true);
-    setError('');
-    if (downloadUrl) URL.revokeObjectURL(downloadUrl);
-    setDownloadUrl(null);
-    try {
-      const formData = new FormData();
-      formData.append('audio', file);
-      const response = await fetch('/api/audio/extract-instrumental', {
-        method: 'POST',
-        body: formData,
-        credentials: 'include'
-      });
-      if (!response.ok) throw new Error(await response.text());
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      const base = file.name.replace(/\.[^.]+$/, '');
-      setDownloadUrl(url);
-      setDownloadName(`${base}-instrumental.mp3`);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Processing failed.');
-    } finally {
-      setProcessing(false);
-    }
-  }
-
-  return (
-    <section className="split">
-      <div className="panel">
-        <SectionTitle icon={Music} title="Vocal Removal" subtitle="Upload an MP3 and extract the instrumental track by removing centred vocals" />
-        <div className="formCard">
-          <label>
-            <span>Audio File</span>
-            <input
-              type="file"
-              accept=".mp3,.wav,.m4a,.flac,.ogg,.aac,audio/*"
-              onChange={(e) => {
-                setFile(e.target.files?.[0] ?? null);
-                setDownloadUrl(null);
-                setError('');
-              }}
-            />
-          </label>
-          {file && (
-            <p className="audioFileName"><Music size={14} /> {file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</p>
-          )}
-          <button
-            className={processing ? 'secondaryButton wide' : 'primaryButton wide'}
-            type="button"
-            disabled={!file || processing}
-            onClick={() => void handleProcess()}
-          >
-            {processing ? <><LoaderCircle className="spin" size={16} />Processing…</> : <><Music size={16} />Remove Vocals</>}
-          </button>
-          {error && <p className="audioError">{error}</p>}
-          {downloadUrl && (
-            <a className="primaryButton wide audioDownload" href={downloadUrl} download={downloadName}>
-              <Download size={16} />{downloadName}
-            </a>
-          )}
-        </div>
-      </div>
-      <div className="panel accentPanel">
-        <SectionTitle icon={Music} title="How it works" subtitle="Center-channel vocal cancellation via FFmpeg" />
-        <div className="listStack">
-          {[
-            ['Works best with', 'Stereo MP3 / WAV tracks where the lead vocal is panned to centre — typical in most commercial recordings.'],
-            ['Removes', 'Centred mono signals: lead vocals, spoken narration, centred solo instruments.'],
-            ['Keeps', 'Instruments panned left or right — drums, bass, guitars, keys, backing vocals.'],
-            ['Output', '192 kbps stereo MP3, ready to download and play immediately.'],
-            ['Limitation', 'Mono files or recordings where instruments share the centre channel will sound hollow. Studio-quality separation requires a dedicated ML model (e.g. Demucs).']
-          ].map(([label, detail]) => (
-            <article className="infoRow" key={label as string}>
-              <div><strong>{label as string}</strong></div>
-              <p>{detail as string}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 const statusOrder: CompositionSubmissionStatus[] = ['Received', 'AI Reviewing', 'Teacher Reviewing', 'Completed'];
 
 function StudentTestView(props: {
